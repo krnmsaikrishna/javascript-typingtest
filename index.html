@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Typing test</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script type="text/javascript">
+function type()
+{
+            var words = $.trim($("textarea").val()).split(" ");
+        alert ("Time Up....");
+          words=words.length;
+  var chars= ($("textarea").val ()).length;
+          $("textarea").val ("");
+var stamp1=$("#stamp1").val ();
+var stamp2=$("#stamp2").val ();
+if(stamp1==0)
+{
+stamp1=1;
+}
+          $("#result").html("Number of words you are entered "+"<b>("+words+")</b>" +" words "+" or "+"<b>("+chars+")</b>"+" characters"+" in "+"<b>"+stamp1+"</b>"+" minutes "+" & "+"<b>"+stamp2+"</b>"+" seconds.");
+exit ();
+};
+function timer ()
+{
+show ();
+var sec=($("#sec").val());
+var min= ($("#min").val());
+
+$("#stamp1").val (min);
+$("#stamp2").val (sec);
+var m=min;
+var s=$("#sec").val ();
+if (m > 59 || m < 0 || s > 59 || s < 0)
+{
+alert ("Error: invalid input minutes or seconds time is enterd on time input system. Note: Please enter between 5 to 59. means upto one hour only.");
+exit ();
+}
+$("#count1").val ("0"+min);
+$("#count2").val ("0"+sec);
+if (min== 1)
+{
+$("#count1").val ("0"+(min-1));
+min=0;
+}
+function seconds()
+{
+if (sec< 0)
+{
+sec=59;
+minutes ();
+}
+if (sec < 10)
+{
+$("#count2").val ("0"+sec);
+}
+else
+{
+$("#count2").val(sec);
+}
+setTimeout(seconds,1000);
+sec=sec-1;
+}
+
+
+function minutes()
+{
+min=min-1;
+if (min < 0)
+{
+type ();
+}
+if (min < 10)
+{
+$("#count1").val("0"+min);
+}
+else
+{
+$("#count1").val(min);
+}
+}
+seconds ();
+}
+function show()
+{
+var flag="show";
+function hide ()
+{
+if (flag=="hide")
+{
+document.getElementById ("blink").style.visibility="hidden";
+flag="show";
+}
+else
+{
+document.getElementById ("blink").style.visibility="visible";
+flag="hide";
+}
+var t=setTimeout (hide,500);
+}
+hide ();
+}
+function reset ()
+{
+window.location=("test.html");
+exit ();
+}
+function styler()
+{
+var size=$("#size").val ();
+var background=$("#background").val ();
+var color=$("#color").val ();
+document.getElementById("textarea").style.fontSize=size+"px";
+document.getElementById("textarea").style.color=color;
+document.getElementById("textarea").style.background=background;
+exit();
+}
+
+</script>
+<style>
+.digi
+{
+width:50px;
+border-radius:100%;
+border:none;
+background: teal;
+color: white;
+text-align:center;
+font-size:25px;
+margin-left:0px;
+margin-top:5px;
+margin-bottom:5px;
+}
+.time
+{
+background: teal;
+border-radius:25px;
+line-height:65px;
+width:150px;
+height:65;
+box-shadow: 0 0 10px black;
+border:10px solid black;
+margin-top:50px;
+}
+.w3-orange
+{
+text-align:center;
+font-size:50px;
+font-weight:bolder;
+font-family:aerial; 
+}
+.w3-brown
+{
+border:1px solid black;
+display:inline-block; 
+width:30%;
+height:275px;
+font-weight:bolder;
+font-family: serif; 
+margin-left:5%;
+}
+.w3-blue
+{
+border:1px solid black;
+display:inline-block;
+width:30%;
+height:275px;
+float:right;
+right:0;
+}
+.w3-teal
+{
+border:1px solid black;
+display:inline-block;
+width:30%;
+height:275px;
+float:left;
+left:0;
+}
+.result
+{
+line-height:50px;
+font-size:25px;
+margin-top:15px;
+width:100%;
+color:white;
+display:block;
+text-align:center;
+box-shadow: 0 0 10px black;
+}
+body
+{
+margin:0;
+}
+.w3-input
+{
+width:80%;
+}
+.ad-element,.ad-outer
+{
+ width:100%;
+ height:500px;
+ background:#ffffff;
+}
+ 
+.ad-outer
+{
+ margin-top:15px;
+ margin-bottom:-10px;
+ border:0px solid white;
+ position: relative;
+ overflow:hidden;
+}
+.ad-inner
+{
+ text-align:center; 
+ position:;
+ overflow:hidden;
+}
+ 
+.ad-inner::-webkit-scrollbar
+{
+display: none;
+}
+
+</style>
+</head>
+<body bgcolor="#ccc" width="100%">
+<input type="hidden" value="" id="stamp1" />
+<input type="hidden" value="" id="stamp2" />
+<p></p>
+
+
+<div class="w3-card-8 w3-teal">
+<div class="w3-card-1 w3-pink">
+<center>
+Style settings
+</center>
+</div>
+<center>
+text-size:<input type="text" id="size" value="" size="2px"  class="w3-input"  />
+text-color: <input type="text" id="color" value="" size="2px"  class="w3-input" />
+background: <input type="text" id="background" value="" size="2px" class="w3-input" />
+<br />
+<input type="button" value="Change Now" onclick="styler()" class="w3-btn" />
+<br /><br />
+</center>
+</div>
+
+
+<div class="w3-card-8 w3-brown">
+<div class="w3-card-1 w3-orange">
+Timer
+</div>
+<center>
+<div class="time">
+<input type="text"  id="count1" value="00" readonly  class="digi" />
+<font style="font-size:25px; line-height:25px;" id="blink">:</font><input type="text"  id="count2" value="00" readonly  class="digi" />
+</div>
+</center>
+</div>
+
+
+
+
+
+<div class="w3-card-8 w3-blue">
+<div class="w3-card-1 w3-purple">
+<center>
+Timer settings
+</center>
+</div>
+<center>
+minutes:<input type="text" id="min" value="" size="2px"  class="w3-input" />
+ <br />
+seconds: <input type="text" id="sec" value="" size="2px" class="w3-input" />
+<br />
+<input type="button" value="Start Now" onclick="timer ()" class="w3-btn" />
+<input type="button" value="Reset Now" onclick="reset ()" class="w3-btn" />
+</center>
+</div>
+</center>
+
+<div class="result w3-red" id="result">
+New version 1.2.2
+</div>
+ <div class="ad-outer" id="ad0">
+ <div class="ad-inner">
+ <div class="ad-element">
+   <textarea id="textarea"cols="100" rows="100" style="background: black; color: white;  font-size: 25px;"></textarea>
+</div></div></div>
+</body>
+</html>                                		
